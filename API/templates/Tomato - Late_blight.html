@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+
+    <title>TOMATO LEAF DISEASE PREDICTION</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        .border img {
+            border-radius: 15px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+    
+        .border img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-color: #1fb9be;
+        }
+    </style>
+    
+</head>
+
+<body background="{{url_for('static',filename = 'images/Back.jpg')}}">
+
+
+
+    <div>
+        <a href="/"><h1 style="text-align:center;font-size:4rem">Predict Tomato Leaf Disease & Get Cure</h1>
+        </a>
+    </div>
+
+   <br>
+   <br>
+
+
+    <div class="container my-2">
+        <div class="row mb-5">
+
+            <div class="col-sm" style="margin-bottom: 23px;">
+                <span class="border border-primary">
+                    <img src="{{ url_for('static',filename=img_data)}}" alt="User Image" style="width:500px;height:500px;">
+                    
+
+                </span>
+            </div>
+
+            <div class="col-sm">
+
+                <div>
+                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                        class="text-center mb-5 content-h1 rounded">
+                        {{prediction.class}} </h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                        class="text-center mb-5 content-h1 rounded">
+                        Confidence: {{prediction.confidence}} </h1>
+                </div>
+                <table style="border: 1;align-items: center;">
+                    <thead>
+                        <tr>
+                            <th>Class Name</th>
+                            <th>Confidance</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(9) %}
+                        <tr>
+                            <td>{{ prediction.classes[i] }}</td>
+                            <td>{{ prediction.predictions[0][i] }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    </tbody>
+                </table>
+                <div class="details">
+					
+					<h4><b> Treatment : </b> </h4>
+                    <h6>
+
+
+                        
+                        Tomatoes that have early blight require immediate attention before the disease takes over the plants. Thoroughly spray the plant (bottoms of leaves also) with Bonide Liquid Copper Fungicide concentrate or Bonide Tomato & Vegetable. Both of these treatments are organic..</br></br>
+                        
+
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
